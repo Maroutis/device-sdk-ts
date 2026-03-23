@@ -18,7 +18,6 @@ import {
   type CliLogLevel,
 } from "@root/src/domain/models/config/LoggerConfig";
 import { type SpeculosConfig } from "@root/src/domain/models/config/SpeculosConfig";
-import { SignableInputKind } from "@root/src/domain/models/SignableInputKind";
 import { type ServiceController } from "@root/src/domain/services/ServiceController";
 import { ERC7730InterceptorService } from "@root/src/infrastructure/services/ERC7730InterceptorService";
 
@@ -434,7 +433,6 @@ export class EthereumTransactionTesterCli {
 
     const result = await testTransactionUseCase.execute(
       {
-        kind: SignableInputKind.Transaction,
         rawTx: transaction,
         description: "Single transaction test",
       },
@@ -477,11 +475,7 @@ export class EthereumTransactionTesterCli {
     );
 
     const result = await testTypedDataUseCase.execute(
-      {
-        kind: SignableInputKind.TypedData,
-        data,
-        description: "single typed data",
-      },
+      { data, description: "single typed data" },
       { derivationPath: this.config.derivationPath },
     );
 

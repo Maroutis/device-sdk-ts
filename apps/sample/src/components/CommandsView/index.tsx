@@ -16,6 +16,9 @@ import {
   type OpenAppArgs,
   OpenAppCommand,
   type OpenAppErrorCodes,
+  CreateLanguagePackageCommand,
+  type CreateLanguagePackageArgs,
+  type CreateLanguagePackageResponse,
 } from "@ledgerhq/device-management-kit";
 import { Grid } from "@ledgerhq/react-ui";
 
@@ -115,6 +118,21 @@ export const CommandsView: React.FC<{ sessionId: string }> = ({
           statusType: BatteryStatusType.BATTERY_CURRENT,
         },
       } satisfies CommandProps<GetBatteryStatusArgs, GetBatteryStatusResponse>,
+      {
+        title: "Create language package",
+        description: "Create a language package",
+        sendCommand: ({ languageID, languagePackageSize }) => {
+          const command = new CreateLanguagePackageCommand({ languageID, languagePackageSize });
+          return dmk.sendCommand({
+            sessionId: selectedSessionId,
+            command,
+          });
+        },
+        initialValues: { languageID: 0, languagePackageSize: 0 },
+      } satisfies CommandProps<
+        CreateLanguagePackageArgs,
+        CreateLanguagePackageResponse
+      >,
     ],
     [selectedSessionId, dmk],
   );

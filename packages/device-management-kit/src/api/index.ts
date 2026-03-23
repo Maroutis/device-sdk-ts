@@ -19,6 +19,13 @@ export {
 } from "@api/command/model/CommandResult";
 export { CloseAppCommand } from "@api/command/os/CloseAppCommand";
 export {
+  type CreateLanguagePackageArgs,
+  CreateLanguagePackageCommand,
+  CreateLanguagePackageCommandError,
+  type CreateLanguagePackageErrorCodes,
+  type CreateLanguagePackageResponse,
+} from "@api/command/os/CreateLanguagePackageCommand";
+export {
   GetAppAndVersionCommand,
   type GetAppAndVersionResponse,
 } from "@api/command/os/GetAppAndVersionCommand";
